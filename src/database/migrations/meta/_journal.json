@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1765576477303,
+      "tag": "0000_legal_mother_askani",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1765576890656,
+      "tag": "0001_spooky_wendell_rand",
+      "breakpoints": true
+    }
+  ]
+}

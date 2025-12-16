@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS "mt_trade_account_ticket_unique" ON "mt_trade" ("account_id","ticket");
