@@ -149,7 +149,7 @@ export class DatabaseService {
   async createSyncLog(data: {
     id: string;
     accountId: string;
-    status: "success" | "error" | "partial";
+    status: "pending" | "success" | "error" | "partial";
     tradesFetched: number;
     tradesInserted: number;
     errorMessage?: string;
@@ -177,7 +177,7 @@ export class DatabaseService {
   async updateSyncLog(
     syncLogId: string,
     updates: {
-      status?: "success" | "error" | "partial";
+      status?: "pending" | "success" | "error" | "partial";
       tradesFetched?: number;
       tradesInserted?: number;
       errorMessage?: string;

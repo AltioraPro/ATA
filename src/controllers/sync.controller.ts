@@ -73,7 +73,7 @@ export const syncAccount = asyncHandler(async (req: Request, res: Response) => {
     // Perform the snapshot sync (deploy -> sync -> fetch -> undeploy)
     const { trades } = await metaApiService.syncAccountTrades(
       accountId,
-      forceFullSync ? null : account.lastSyncTime || undefined
+      forceFullSync ? undefined : account.lastSyncTime || undefined
     );
 
     // Update sync log with fetched count

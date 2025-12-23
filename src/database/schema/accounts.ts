@@ -35,11 +35,11 @@ export const mtAccounts = pgTable(
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
   },
-  (table) => [
-    index("mt_account_user_id_idx").on(table.userId),
-    index("mt_account_metaapi_account_id_idx").on(table.metaApiAccountId),
-    index("mt_account_login_platform_idx").on(table.login, table.platform),
-  ]
+  (table) => ({
+    userIdIdx: index("mt_account_user_id_idx").on(table.userId),
+    metaApiAccountIdIdx: index("mt_account_metaapi_account_id_idx").on(table.metaApiAccountId),
+    loginPlatformIdx: index("mt_account_login_platform_idx").on(table.login, table.platform),
+  })
 );
 
 export const mtTrades = pgTable(
@@ -77,14 +77,14 @@ export const mtTrades = pgTable(
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
   },
-  (table) => [
-    index("mt_trade_account_id_idx").on(table.accountId),
-    index("mt_trade_ticket_idx").on(table.ticket),
-    index("mt_trade_symbol_idx").on(table.symbol),
-    index("mt_trade_open_time_idx").on(table.openTime),
-    index("mt_trade_synced_at_idx").on(table.syncedAt),
-    uniqueIndex("mt_trade_account_ticket_unique").on(table.accountId, table.ticket),
-  ]
+  (table) => ({
+    accountIdIdx: index("mt_trade_account_id_idx").on(table.accountId),
+    ticketIdx: index("mt_trade_ticket_idx").on(table.ticket),
+    symbolIdx: index("mt_trade_symbol_idx").on(table.symbol),
+    openTimeIdx: index("mt_trade_open_time_idx").on(table.openTime),
+    syncedAtIdx: index("mt_trade_synced_at_idx").on(table.syncedAt),
+    accountTicketUnique: uniqueIndex("mt_trade_account_ticket_unique").on(table.accountId, table.ticket),
+  })
 );
 
 export const syncLogs = pgTable(
@@ -96,7 +96,7 @@ export const syncLogs = pgTable(
       .notNull(),
 
     // Sync operation details
-    status: varchar("status", { length: 20 }).notNull(), // "success", "error", "partial"
+    status: varchar("status", { length: 20 }).notNull(), // "pending", "success", "error", "partial"
     tradesFetched: varchar("trades_fetched", { length: 10 }).default("0"),
     tradesInserted: varchar("trades_inserted", { length: 10 }).default("0"),
     errorMessage: text("error_message"),
@@ -109,9 +109,9 @@ export const syncLogs = pgTable(
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
   },
-  (table) => [
-    index("sync_log_account_id_idx").on(table.accountId),
-    index("sync_log_status_idx").on(table.status),
-    index("sync_log_started_at_idx").on(table.startedAt),
-  ]
+  (table) => ({
+    accountIdIdx: index("sync_log_account_id_idx").on(table.accountId),
+    statusIdx: index("sync_log_status_idx").on(table.status),
+    startedAtIdx: index("sync_log_started_at_idx").on(table.startedAt),
+  })
 );
