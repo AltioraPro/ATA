@@ -1,5 +1,8 @@
 # ATA (Altiora Trading API)
 
+> **⚠️ This project has been abandoned.**  
+> The development was discontinued due to the high costs associated with the MetaAPI service and infrastructure requirements.
+
 <p align="center">
   <img src="./public/img/logo.png" alt="Altiora Logo" />
 </p>
@@ -10,7 +13,6 @@
 </p>
 
 [Altiora](https://altiora.pro) backend API service for Autojournaling.
-
 
 ## Getting Started
 
@@ -37,6 +39,7 @@ copy .env.example .env
 ```bash
 bun install
 ```
+
 5. Start the development server
 
 ```bash
