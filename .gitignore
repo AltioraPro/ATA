@@ -1,0 +1,21 @@
+# Ignore node_modules
+node_modules
+
+# Ignore bun.lock
+bun.lock
+
+# Ignore .env
+.env
+
+# Ignore dist
+dist
+
+# Ignore .vscode
+.vscode
+
+# Ignore .bunrc
+.bunrc
+
+# Logs
+logs/
+*.log

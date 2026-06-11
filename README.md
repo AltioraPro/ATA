@@ -50,4 +50,14 @@ The API serves on `http://localhost:3001`.
 
 ## License
 
-The license definition is in progress.
+This project is licensed under the [MIT License](LICENSE).
+
+## Security notice
+
+This project was abandoned and is provided as-is for reference. It was **not designed for production deployment** without significant hardening:
+
+- API endpoints have **no authentication** (`JWT_SECRET` is configured but unused).
+- User identity relies on a spoofable `x-user-id` header.
+- Destructive routes (`DELETE`, undeploy, sync) are publicly accessible if the server is exposed.
+
+Do not deploy this service on the public internet without implementing proper auth, authorization, and network isolation. Never commit real credentials — use `.env` (see `.env.example`).

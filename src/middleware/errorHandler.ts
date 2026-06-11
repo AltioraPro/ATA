@@ -39,13 +39,24 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ) {
-  // Log the error
+  // Log the error (redact sensitive fields from body)
+  const safeBody =
+    req.body && typeof req.body === 'object'
+      ? Object.fromEntries(
+          Object.entries(req.body).map(([key, value]) =>
+            ['password', 'encryptedPassword', 'token', 'secret'].includes(key)
+              ? [key, '[REDACTED]']
+              : [key, value]
+          )
+        )
+      : req.body;
+
   logger.error('Unhandled error:', {
     error: error.message,
     stack: error.stack,
     url: req.url,
     method: req.method,
-    body: req.body,
+    body: safeBody,
     params: req.params,
     query: req.query,
   });
